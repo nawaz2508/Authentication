@@ -71,7 +71,7 @@ const login = async (req, res) => {
 // for login with email 
 const email = async(req, res) => {
     try{
-        let user = await User.findOne({email: req.body.email}).lean().exec();
+        let user = await User.findOne({email: req.body.email});
 
         if(!user) return res.status(400).send("Please try another email or password");
 
