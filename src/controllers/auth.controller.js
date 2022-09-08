@@ -75,6 +75,11 @@ const email = async(req, res) => {
 
         if(!user) return res.status(400).send("Please try another email or password");
 
+        const match = user.checkPassword(req.body.password);
+
+        if(! match) return res.status(400).send({ message: "Please check email or password"});
+
+
         const token = newToken(user);
         return res.status(200).send({user, token});
     }
